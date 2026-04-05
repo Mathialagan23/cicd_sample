@@ -1,6 +1,18 @@
 steps:
-- name: 'python'
-  args: ['python3', 'hello.py']
+ -name: 'gcr.io/cloud-builders/docker'
+ args: ['build','-t','asia-south1-docker.pkg.dev/cicd-sample-491710/sample-repo/pythonimg:latest','.']
 
-options:
-  logging: CLOUD_LOGGING_ONLY
+ -name: 'gcr.io/cloud-builders/docker'
+ args: ['push','-t','asia-south1-docker.pkg.dev/cicd-sample-491710/sample-repo/pythonimg:latest']
+
+ -name: 'gcr.io/google.com/cloudsdktools/cloud-sdk'
+ entrypoint: gcloud
+ args:
+ - 'run'
+ - 'deploy'
+ - 'pythonapp'
+ - '--image'
+ - 'asia-south1-docker.pkg.dev/cicd-sample-491710/sample-repo/pythonimg:latest'
+ - '--region'
+ - 'asia-south1'
+ - '--allow-unauthenticated'
