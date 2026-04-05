@@ -5,7 +5,7 @@ steps:
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push','asia-south1-docker.pkg.dev/cicd-sample-491710/sample-repo/pythonimg:latest']
 
- - name: 'gcr.io/google.com/cloudsdktools/cloud-sdk'
+ - name: 'gcr.io/cloud-builders/gcloud'
    entrypoint: gcloud
    args:
    - 'run'
