@@ -11,11 +11,11 @@ steps:
    - 'run'
    - 'deploy'
    - 'python-app'
-   - '-- image'
+   - '--image'
    - 'asia-south1-docker.pkg.dev/gcp-demo-492516/sample-repo/pyappimg:latest'
-   - '-- region'
+   - '--region'
    - 'asia-south1'
-   - '-- allow-unauthenticated'
+   - '--allow-unauthenticated'
 
 
 options:
