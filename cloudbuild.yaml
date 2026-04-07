@@ -1,6 +1,7 @@
-substitution:
- _IMAGE: sample-repo/pyappimg:latest
- _LOCATION: asia-south1-docker.pkg.dev
+substitutions:
+  _IMAGE: sample-repo/pyappimg:latest
+  _LOCATION: asia-south1-docker.pkg.dev
+
 steps:
  - name: 'gcr.io/cloud-builders/docker'
    args: ['build','-t','${_LOCATION}/${PROJECT_ID}/${_IMAGE}','.']
