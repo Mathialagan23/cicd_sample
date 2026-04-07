@@ -1,9 +1,12 @@
+substitution:
+ _IMAGE: sample-repo/pyappimg:latest
+ _LOCATION: asia-south1-docker.pkg.dev
 steps:
  - name: 'gcr.io/cloud-builders/docker'
-   args: ['build','-t','asia-south1-docker.pkg.dev/${PROJECT_ID}/sample-repo/pyappimg:latest','.']
+   args: ['build','-t','${_LOCATION}/${PROJECT_ID}/${_IMAGE}','.']
 
  - name: 'gcr.io/cloud-builders/docker'
-   args: ['push','asia-south1-docker.pkg.dev/${PROJECT_ID}/sample-repo/pyappimg:latest']
+   args: ['push','${_LOCATION}/${PROJECT_ID}/${_IMAGE}']
 
  - name: 'gcr.io/cloud-builders/gcloud'
    entrypoint: gcloud
@@ -12,7 +15,7 @@ steps:
    - 'deploy'
    - 'python-app'
    - '--image'
-   - 'asia-south1-docker.pkg.dev/${PROJECT_ID}/sample-repo/pyappimg:latest'
+   - '${_LOCATION}/${PROJECT_ID}/${_IMAGE}'
    - '--region'
    - 'asia-south1'
    - '--allow-unauthenticated'
