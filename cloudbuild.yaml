@@ -1,26 +1,23 @@
-substitutions:
-  _IMAGE: sample-repo/pyappimg:latest
-  _LOCATION: asia-south1-docker.pkg.dev
-
 steps:
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['build','-t','${_LOCATION}/${PROJECT_ID}/${_IMAGE}','.']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c','docker login --username=$$DOCKER_USERNAME --password=$$DOCKER_PASSWORD ']
+  secretEnv: ['DOCKER_USERNAME', 'DOCKER_PASSWORD']
 
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['push','${_LOCATION}/${PROJECT_ID}/${_IMAGE}']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c','docker build $$DOCKER_USERNAME/pyappimg:latest .']
+  secretEnv: ['DOCKER_USERNAME']
 
- - name: 'gcr.io/cloud-builders/gcloud'
-   entrypoint: gcloud
-   args:
-   - 'run'
-   - 'deploy'
-   - 'python-app'
-   - '--image'
-   - '${_LOCATION}/${PROJECT_ID}/${_IMAGE}'
-   - '--region'
-   - 'asia-south1'
-   - '--allow-unauthenticated'
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c','docker push $$DOCKER_USERNAME/pyappimg:latest']
+  secretEnv: ['DOCKER_USERNAME']
 
 
-options:
- logging: CLOUD_LOGGING_ONLY
+availablesecrets:
+ - versionName: projects/573684710369/secrets/DOCKER_USERNAME/versions/1
+   env: 'DOCKER_USERNAME'
+
+ - versionName: projects/573684710369/secrets/DOCKER_PASSWORD/versions/1
+   env: 'DOCKER_PASSWORD'
