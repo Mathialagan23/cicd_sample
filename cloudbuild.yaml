@@ -15,7 +15,8 @@ steps:
   secretEnv: ['DOCKER_USERNAME']
 
 
-availablesecrets:
+availableSecrets:
+ secretManager:
  - versionName: projects/573684710369/secrets/DOCKER_USERNAME/versions/1
    env: 'DOCKER_USERNAME'
 
