@@ -22,3 +22,6 @@ availableSecrets:
 
  - versionName: projects/573684710369/secrets/DOCKER_PASSWORD/versions/1
    env: 'DOCKER_PASSWORD'
+
+options:
+ logging: CLOUD_LOGGING_ONLY
