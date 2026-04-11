@@ -11,7 +11,7 @@ steps:
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c','docker push -t $$DOCKER_USERNAME/pyappimg:latest']
+  args: ['-c','docker push $$DOCKER_USERNAME/pyappimg:latest']
   secretEnv: ['DOCKER_USERNAME']
 
 
