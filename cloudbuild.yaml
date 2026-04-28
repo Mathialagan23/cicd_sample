@@ -21,6 +21,6 @@ steps:
    - 'asia-south1'
    - '--allow-unauthenticated'
 
-
+logsBucket: 'gs://build_logs-1'
 options:
- logging: CLOUD_LOGGING_ONLY
+ logging: GCS_ONLY
