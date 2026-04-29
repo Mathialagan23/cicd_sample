@@ -12,7 +12,7 @@ steps:
  - name: gcr.io/cloud-builders/gcloud
    args: ['run','deploy','python-app','--image','${_LOCATION}/${PROJECT_ID}/${_IMAGE}','--location','asia-south1','--allow-unauthenticated']
 
-logBuckets: gs://demo-log
+logsBucket: gs://demo-log
 
 options:
  logging: GCS_ONLY
