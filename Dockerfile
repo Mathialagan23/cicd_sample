@@ -1,6 +1,6 @@
-FROM python:3.8-slim
+FROM python:3.14.4
 WORKDIR /app
 ADD . /app
 RUN pip install --trusted-host pypi.python.org Flask
-ENV NAME mathi
-CMD [ "python", "app.py"]
+ENV NAME Mathi
+CMD [ "python" , "app.py" ]
