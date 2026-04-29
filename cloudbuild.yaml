@@ -10,6 +10,7 @@ steps:
    args: ['push','${_LOCATION}/${PROJECT_ID}/${_IMAGE}']
 
  - name: gcr.io/cloud-builders/gcloud
+   entrypoint: gcloud
    args: ['run','deploy','python-app','--image','${_LOCATION}/${PROJECT_ID}/${_IMAGE}','--location','asia-south1','--allow-unauthenticated']
 
 logsBucket: gs://demo-log
