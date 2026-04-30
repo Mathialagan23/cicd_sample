@@ -6,12 +6,12 @@ steps:
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c','docker build -t $$DOCKER_USERNAME/pyappimg:latest .']
+  args: ['-c','docker build -t $$DOCKER_USERNAME/pyappimg1:latest .']
   secretEnv: ['DOCKER_USERNAME']
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c','docker push $$DOCKER_USERNAME/pyappimg:latest']
+  args: ['-c','docker push $$DOCKER_USERNAME/pyappimg1:latest']
   secretEnv: ['DOCKER_USERNAME']
 
 
@@ -23,5 +23,6 @@ availableSecrets:
  - versionName: projects/573684710369/secrets/DOCKER_PASSWORD/versions/1
    env: 'DOCKER_PASSWORD'
 
+logsBucket: gs://py-app-logs
 options:
- logging: CLOUD_LOGGING_ONLY
+ logging: GCS_ONLY
